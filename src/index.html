@@ -8,10 +8,12 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 <body>
   <div id="root">
-    <h1>{{title}}</h1>
+    <h1 v-show="title">{{title}}</h1>
     <label>Enter Todo</label>
     <input v-model="todo"/>
-    <h2>{{todo}}</h2>
+    <h4 v-if="todo.length > 3">Todo: {{todo}}</h4>
+    <h4 v-else-if="todo.length > 0 && todo.length <= 3">Todo must have at least four characters</h4>
+    <h4 v-else>Enter some text</h4>
   </div>
 </body>
 <script>
