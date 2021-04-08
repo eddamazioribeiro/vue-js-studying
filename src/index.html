@@ -14,6 +14,8 @@
     <h4 v-if="todo.length > 3">Todo: {{todo}}</h4>
     <h4 v-else-if="todo.length > 0 && todo.length <= 3">Todo must have at least four characters</h4>
     <h4 v-else>Enter some text</h4>
+    <br/>
+    <input v-bind:value="title" :disabled="!showExtraInput"/>
   </div>
 </body>
 <script>
@@ -22,7 +24,8 @@
     data() {
       return {
         title: 'Welcome to Vue.Js',
-        todo: ''
+        todo: '',
+        showExtraInput: false
       }
     }
   })
