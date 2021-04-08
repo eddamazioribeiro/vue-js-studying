@@ -9,6 +9,9 @@
 <body>
   <div id="root">
     <h1>{{title}}</h1>
+    <label>Enter Todo</label>
+    <input v-model="todo"/>
+    <h2>{{todo}}</h2>
   </div>
 </body>
 <script>
@@ -16,7 +19,8 @@
     el: '#root',
     data() {
       return {
-        title: 'Welcome to Vue.Js'
+        title: 'Welcome to Vue.Js',
+        todo: ''
       }
     }
   })
