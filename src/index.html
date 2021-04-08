@@ -15,7 +15,12 @@
     <h4 v-else-if="todo.length > 0 && todo.length <= 3">Todo must have at least four characters</h4>
     <h4 v-else>Enter some text</h4>
     <br/>
+    <!-- :disabled == v-bind:disabled -->
     <input v-bind:value="title" :disabled="!showExtraInput"/>
+    <!-- @click == v-on:click -->
+    <button name="add-todo" @click="addTodo('hello from ', $event)">
+      Add
+    </button>
   </div>
 </body>
 <script>
@@ -26,6 +31,11 @@
         title: 'Welcome to Vue.Js',
         todo: '',
         showExtraInput: false
+      }
+    },
+    methods: {
+      addTodo(val, e) {
+        console.log(val, e.target.name);
       }
     }
   })
