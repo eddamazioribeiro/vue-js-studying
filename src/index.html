@@ -18,9 +18,17 @@
     <!-- :disabled == v-bind:disabled -->
     <input v-bind:value="title" :disabled="!showExtraInput"/>
     <!-- @click == v-on:click -->
-    <button name="add-todo" @click="addTodo('hello from ', $event)">
+    <button name="add-todo" @click="addTodo">
       Add
     </button>
+    <button name="clear-list" @click="clearTodoList">
+      Clear
+    </button>
+    <ul>
+      <li v-for="(todo, i) in todoList">
+        {{i + 1}} - {{todo}}
+      </li>
+    </ul>
   </div>
 </body>
 <script>
@@ -30,12 +38,17 @@
       return {
         title: 'Welcome to Vue.Js',
         todo: '',
+        todoList: [],
         showExtraInput: false
       }
     },
     methods: {
-      addTodo(val, e) {
-        console.log(val, e.target.name);
+      addTodo() {
+        this.todoList.push(this.todo);
+        this.todo = '';
+      },
+      clearTodoList() {
+        this.todoList = [];
       }
     }
   })
