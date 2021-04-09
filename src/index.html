@@ -24,11 +24,7 @@
     <button name="clear-list" @click="clearTodoList" :disabled="todoList.length === 0">
       Clear
     </button>
-    <ul>
-      <li v-for="(todo, i) in todoList">
-        {{i + 1}} - {{todo | capitalizeTodo}}
-      </li>
-    </ul>
+    <todo-list :todos="todoList"></todo-list>
     <hr/>
     <label>Enter Food</label>
     <input v-model="food">
@@ -36,8 +32,43 @@
   </div>
 </body>
 <script>
+  // global component declaration
+  /* Vue.component('todo-list', {
+    props: ['todos'],
+    template: `
+    <ul>
+      <li v-for="(todo, i) in todos">
+        {{i + 1}} - {{todo | capitalizeTodo}}
+      </li>
+    </ul>
+    `, 
+    filters: {
+      capitalizeTodo(val) {
+        return val.toUpperCase();
+      }
+    }
+  }) */
+  // local component registration
+  let myTodoListComponent = {
+    props: ['todos'],
+    template: `
+    <ul>
+      <li v-for="(todo, i) in todos">
+        {{i + 1}} - {{todo | capitalizeTodo}}
+      </li>
+    </ul>
+    `, 
+    filters: {
+      capitalizeTodo(val) {
+        return val.toUpperCase();
+      }
+    }
+  }
   new Vue({
     el: '#root',
+    components: {
+      'todo-list': myTodoListComponent
+    },
     data() {
       return {
         title: 'Welcome to Vue.Js',
@@ -60,11 +91,6 @@
       getFood() {
         console.log('getFood called');
         return this.food.toUpperCase();
-      }
-    }, 
-    filters: {
-      capitalizeTodo(val) {
-        return val.toUpperCase();
       }
     }
   })
