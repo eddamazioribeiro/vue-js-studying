@@ -29,6 +29,10 @@
         {{i + 1}} - {{todo}}
       </li>
     </ul>
+    <hr/>
+    <label>Enter Food</label>
+    <input v-model="food">
+    <h4>Food: {{getFood}}</h4>
   </div>
 </body>
 <script>
@@ -38,6 +42,7 @@
       return {
         title: 'Welcome to Vue.Js',
         todo: '',
+        food: '',
         todoList: [],
         showExtraInput: false
       }
@@ -49,6 +54,12 @@
       },
       clearTodoList() {
         this.todoList = [];
+      }
+    },
+    computed: {
+      getFood() {
+        console.log('getFood called');
+        return this.food.toUpperCase();
       }
     }
   })
