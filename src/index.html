@@ -26,7 +26,7 @@
     </button>
     <ul>
       <li v-for="(todo, i) in todoList">
-        {{i + 1}} - {{todo}}
+        {{i + 1}} - {{todo | capitalizeTodo}}
       </li>
     </ul>
     <hr/>
@@ -60,6 +60,11 @@
       getFood() {
         console.log('getFood called');
         return this.food.toUpperCase();
+      }
+    }, 
+    filters: {
+      capitalizeTodo(val) {
+        return val.toUpperCase();
       }
     }
   })
