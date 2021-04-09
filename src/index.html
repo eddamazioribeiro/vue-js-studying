@@ -10,18 +10,18 @@
   <div id="root">
     <h1 v-show="title">{{title}}</h1>
     <label>Enter Todo</label>
-    <input v-model="todo"/>
-    <h4 v-if="todo.length > 3">Todo: {{todo}}</h4>
+    <input v-model="todo" :class="[todo.length > 3 ? 'valid' : 'invalid']"/>
+    <h4 v-if="todo.length > 3">Todo: {{todo}}</h4>/
     <h4 v-else-if="todo.length > 0 && todo.length <= 3">Todo must have at least four characters</h4>
     <h4 v-else>Enter some text</h4>
     <br/>
     <!-- :disabled == v-bind:disabled -->
     <input v-bind:value="title" :disabled="!showExtraInput"/>
     <!-- @click == v-on:click -->
-    <button name="add-todo" @click="addTodo">
+    <button name="add-todo" @click="addTodo" :disabled="todo.length < 3">
       Add
     </button>
-    <button name="clear-list" @click="clearTodoList">
+    <button name="clear-list" @click="clearTodoList" :disabled="todoList.length === 0">
       Clear
     </button>
     <ul>
@@ -53,4 +53,12 @@
     }
   })
 </script>
+<style>
+  .valid {
+    border: 4px solid lightgreen;
+  }
+  .invalid {
+    border: 4px solid red;
+  }
+</style>
 </html>
